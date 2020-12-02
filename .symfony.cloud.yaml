@@ -3,16 +3,18 @@ name: app
 type: php:7.4
 
 runtime:
-    extensions:
-        - pdo_pgsql
+    extensions:        
         - apcu
         - mbstring
         - sodium
         - iconv
-        - ctype
+        - ctype        
+        - pdo_pgsql
+        - redis
 
 relationships:
     database: "db:postgresql"
+    redis: "rediscache:redis"
 
 #variables:
 #    php:
