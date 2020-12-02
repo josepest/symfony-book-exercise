@@ -10,7 +10,16 @@
   </h2>
   {% for conference in conferences %}
     <h4>
-      {{ conference }}
+      {{ conference }} | <a href="{{
+        path(
+          'conference-view',
+          {
+            id: conference.id
+          }
+        )
+        }}">
+        View details
+      </a>
     </h4>
   {% endfor %}
 {% endblock %}

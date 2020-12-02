@@ -3,7 +3,7 @@ easy_admin:
 
   design:
     menu:
-      - { route: "homepage", label: "Back to the website", icon: "home" }
+      - { route: "conference-list", label: "Back to the website", icon: "home" }
       - { entity: "Conference", label: "Conferences", icon: "map-marker" }
       - { entity: "Comment", label: "Comments", icon: "comments" }
 
