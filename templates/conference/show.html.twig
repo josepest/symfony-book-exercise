@@ -14,7 +14,7 @@
 	{% if (comments|length) > 0 %}
 		<div>
 			There are
-			{{ comments|length }}
+			{{ comments | length }}
 			comments.
 		</div>
 
@@ -33,24 +33,25 @@
 			</p>
 			<hr/>
 		{% endfor %}
-
 		{% if previous >= 0 %}
-			<a href="{{ path( 'conference-view', { slug: conference.slug, offset: previous } ) }}">
+			<a href="{{ path('conference-view', { slug: conference.slug, offset: previous }) }}">
 				Previous
 			</a>
 		{% endif %}
 		{% if next < (comments|length) %}
-			<a href="{{ path( 'conference-view', { slug: conference.slug, offset: next } ) }}">
+			<a href="{{ path('conference-view', { slug: conference.slug, offset: next }) }}">
 				Next
 			</a>
 		{% endif %}
 	{% else %}
-		<div>
-			No comments have been posted yet for this conference. Fixed bug
-		</div>
+		<div>No comments have been posted yet for this conference. Fixed bug</div>
 	{% endif %}
 
-	<p>
-		<a href="{{ path('conference-list') }}">Back to list</a>
-	</p>
-{% endblock %}
+	<h2>Add your own feedback</h2>
+
+	{{ form(comment_form) }}
+		<hr/>
+		<p>
+			<a href="{{ path('conference-list') }}">Back to list</a>
+		</p>
+	{% endblock %}
