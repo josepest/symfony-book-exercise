@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "82f699f107256ff6c02fa5db71b0c13a",
+    "content-hash": "75e67557f3056f4ca356f4d85cdba91c",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -5098,6 +5098,9 @@
             ],
             "description": "Symfony SecurityBundle",
             "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/security-bundle/tree/v5.2.0"
+            },
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
