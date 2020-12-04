@@ -10,6 +10,11 @@ easy_admin:
   entities:
     Conference:
       class: App\Entity\Conference
+      form:
+        fields:
+          - "city"
+          - "year"
+          - "isInternational"
 
     Comment:
       class: App\Entity\Comment
@@ -22,14 +27,25 @@ easy_admin:
           - conference
         sort: ["createdAt", "ASC"]
         filters: ["conference", "email"]
+      form:
+        fields:
+          - "conference"
+          - {
+              property: "createdAt",
+              type: datetime                      
+            }
+          - "author"
+          - {
+              property: "email", 
+              type: "email"
+            }
+          - text
       edit:
         fields:
-          - { property: "conference" }
+          - { property: "conference", type_options: { disabled: true } }
           - {
               property: "createdAt",
               type: datetime,
-              type_options: { disabled: true },
-            }
-          - "author"
-          - { property: "email", type: "email" }
-          - text
+              type_options: { disabled: true }              
+            }          
+      
