@@ -27,7 +27,7 @@ easy_admin:
           - { property: "createdAt", type: "datetime" }
           - conference
         sort: ["createdAt", "ASC"]
-        filters: ["conference", "email"]
+        filters: ["conference", "email", "state"]
       form:
         fields:
           - "conference"
