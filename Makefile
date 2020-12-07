@@ -23,4 +23,4 @@ tests:
 # symfony console messenger:failed:show
 # symfony server:status
 # symfony open:local:rabbitmq
-# http://127.0.0.1:32782/#/
+# http://127.0.0.1:15672/#/
