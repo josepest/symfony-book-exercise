@@ -26,7 +26,7 @@ class CommentPublishNotification extends Notification implements EmailNotificati
             ->htmlTemplate('emails/comment_publish.html.twig')
             ->context(
                 ['comment' => $this->comment,
-                'conference' => $this->comment->getConference()]
+                'conferenceslug' => $this->comment->getConference()->getSlug()]
             );
 
         return $message;

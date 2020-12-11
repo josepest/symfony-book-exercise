@@ -92,8 +92,8 @@ class CommentMessageHandler implements MessageHandlerInterface
             $this->workflow->apply($comment, 'optimize');
             $this->entityManager->flush();
 
-            $conference = $comment->getConference();
-            $this->logger->debug('CommentPublishNotification', ['email' => $comment->getEmail(), 'slug' => $conference->getSlug()]);
+            //$conference = $comment->getConference();
+            //$this->logger->debug('CommentPublishNotification', ['email' => $comment->getEmail(), 'slug' => $conference->getSlug()]);
             $this->notifier->send(
                 new CommentPublishNotification($comment),
                 new Recipient($comment->getEmail())

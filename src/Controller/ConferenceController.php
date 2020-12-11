@@ -115,6 +115,9 @@ class ConferenceController extends AbstractController
         $offset = max(0, $request->query->getInt('offset', 0));
         $commentsPaginated = $commentRepository->getCommentPaginator($conference, $offset);
 
+        //$comment = $commentRepository->find(116);
+        //dump($comment->getConference()->getSlug());
+
         return $this->render('conference/show.html.twig', [
             'conference' => $conference,
             'comments' => $commentsPaginated,
