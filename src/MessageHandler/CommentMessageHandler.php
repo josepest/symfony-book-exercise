@@ -10,8 +10,10 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use App\Notification\CommentReviewNotification;
 use Symfony\Bridge\Twig\Mime\NotificationEmail;
+use App\Notification\CommentPublishNotification;
 use Symfony\Component\Notifier\NotifierInterface;
 use Symfony\Component\Workflow\WorkflowInterface;
+use Symfony\Component\Notifier\Recipient\Recipient;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
@@ -89,6 +91,13 @@ class CommentMessageHandler implements MessageHandlerInterface
             }
             $this->workflow->apply($comment, 'optimize');
             $this->entityManager->flush();
+
+            $conference = $comment->getConference();
+            $this->logger->debug('CommentPublishNotification', ['email' => $comment->getEmail(), 'slug' => $conference->getSlug()]);
+            $this->notifier->send(
+                new CommentPublishNotification($comment),
+                new Recipient($comment->getEmail())
+            );
         } elseif ($this->logger) {
             $this->logger->debug('Dropping comment message', ['comment' => $comment->getId(), 'state' => $comment->getState()]);
         }
