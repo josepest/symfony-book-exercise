@@ -21,6 +21,7 @@ tests:
 # guest/ guest 
 # symfony run -d --watch=config,src,templates,vendor symfony console messenger:consume async
 # symfony console messenger:failed:show
+# symfony console messenger:failed:retry
 # symfony server:status
 # symfony open:local:rabbitmq
 # http://127.0.0.1:15672/#/

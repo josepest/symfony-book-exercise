@@ -8,7 +8,9 @@ use App\Message\CommentMessage;
 use App\Repository\CommentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Mailer\MailerInterface;
+use App\Notification\CommentReviewNotification;
 use Symfony\Bridge\Twig\Mime\NotificationEmail;
+use Symfony\Component\Notifier\NotifierInterface;
 use Symfony\Component\Workflow\WorkflowInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
@@ -23,6 +25,7 @@ class CommentMessageHandler implements MessageHandlerInterface
     private $photoDir;
     private $adminEmail;
     private $logger;
+    private $notifier;
 
     public function __construct(
         EntityManagerInterface $entityManager,
@@ -33,6 +36,7 @@ class CommentMessageHandler implements MessageHandlerInterface
         MailerInterface $mailer,
         string $adminEmail,
         ImageOptimizer $imageOptimizer,
+        NotifierInterface $notifier,
         string $photoDir,
         LoggerInterface $logger = null
     ) {
@@ -45,6 +49,7 @@ class CommentMessageHandler implements MessageHandlerInterface
         $this->adminEmail = $adminEmail;
         $this->logger = $logger;
         $this->imageOptimizer = $imageOptimizer;
+        $this->notifier = $notifier;
         $this->photoDir = $photoDir;
     }
 
@@ -67,6 +72,7 @@ class CommentMessageHandler implements MessageHandlerInterface
             
             $this->bus->dispatch($message);
         } elseif ($this->workflow->can($comment, 'publish') || $this->workflow->can($comment, 'publish_ham')) {
+            /*
             $this->mailer->send(
                 (new NotificationEmail())
                 ->subject('New comment posted')
@@ -75,6 +81,8 @@ class CommentMessageHandler implements MessageHandlerInterface
                 ->to($this->adminEmail)
                 ->context(['comment' => $comment])
             );
+            */
+            $this->notifier->send(new CommentReviewNotification($comment), ...$this->notifier->getAdminRecipients());
         } elseif ($this->workflow->can($comment, 'optimize')) {
             if ($comment->getPhotoFilename()) {
                 $this->imageOptimizer->resize($this->photoDir.'/'.$comment->getPhotoFilename());
