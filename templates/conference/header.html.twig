@@ -1,0 +1,9 @@
+<ul style="display:inline-block;">
+	{% for conference in conferences %}
+		<li style="display:inline-block; margin-right:10px;">
+			<a href="{{ path( 'conference-view', { slug: conference.slug } ) }}">
+				{{ conference }}
+			</a>
+		</li>
+	{% endfor %}
+</ul>

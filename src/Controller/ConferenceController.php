@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\SpamChecker;
+use Twig\Environment;
 use App\Entity\Comment;
 use App\Entity\Conference;
 use App\Form\CommentFormType;
@@ -29,12 +30,38 @@ class ConferenceController extends AbstractController
         $this->bus = $bus;
     }
 
+
+    /**
+     * @Route("/conference_header", name="conference_header")
+     */
+    public function conferenceHeader(ConferenceRepository $conferenceRepository): Response
+    {
+        $response = $this->render('conference/header.html.twig', [
+            'conferences' => $conferenceRepository->findAll(),
+        ]);
+        $response->setSharedMaxAge(3600);
+        return $response;
+    }
+
     /**
      * @Route("/", name="conference-list")
      */
     public function index(ConferenceRepository $conferenceRepository): Response
     {
-        return $this->render('conference/index.html.twig');
+        $response = $this->render('conference/index.html.twig', [
+            'conferences' => $conferenceRepository->findAll()
+        ]);
+
+        /*
+        $response = new Response($twig->render('conference/index.html.twig', [
+            'conferences' => $conferenceRepository->findAll(),
+        ]));
+        */
+
+        //$response->setPublic();
+        //$response->setMaxAge(600);
+        $response->setSharedMaxAge(3600);
+        return $response;
     }
 
     /**
