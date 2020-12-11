@@ -19,9 +19,11 @@ if ($_SERVER['APP_DEBUG']) {
 $kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
 
 // Cahe proxi inverso
+/*
 if ('dev' === $kernel->getEnvironment()) {
     $kernel = new HttpCache($kernel);
 }
+*/
 
 
 $request = Request::createFromGlobals();
