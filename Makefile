@@ -24,3 +24,6 @@ tests:
 # symfony server:status
 # symfony open:local:rabbitmq
 # http://127.0.0.1:15672/#/
+
+# ENCORE
+# symfony run -d yarn encore dev --watch

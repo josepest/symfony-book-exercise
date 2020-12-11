@@ -9,6 +9,15 @@
 import "./styles/app.scss";
 
 // start the Stimulus application
-import "./bootstrap";
+//import "./bootstrap";
 
 import "bootstrap";
+
+//var $ = require("jquery");
+
+// custom file input label change
+$(".custom-file input").on("change", function (e) {
+  if (e.target.files.length) {
+    $(this).next(".custom-file-label").html(e.target.files[0].name);
+  }
+});
