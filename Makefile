@@ -24,7 +24,12 @@ tests:
 # symfony console messenger:failed:retry
 # symfony server:status
 # symfony open:local:rabbitmq
-# http://127.0.0.1:15672/#/
+# http://127.0.0.1:15672
 
 # ENCORE
 # symfony run -d yarn encore dev --watch
+# server spa:
+# symfony server:start -d --passthru=index.html
+# API_ENDPOINT=`symfony var:export SYMFONY_PROJECT_DEFAULT_ROUTE_URL --dir=..` yarn encore dev
+# API_ENDPOINT=`symfony var:export SYMFONY_PROJECT_DEFAULT_ROUTE_URL --dir=..` symfony run -d --watch=webpack.config.js yarn encore dev --watch
+# setup CORS_ALLOW_ORIGIN en env
