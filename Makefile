@@ -33,3 +33,6 @@ tests:
 # API_ENDPOINT=`symfony var:export SYMFONY_PROJECT_DEFAULT_ROUTE_URL --dir=..` yarn encore dev
 # API_ENDPOINT=`symfony var:export SYMFONY_PROJECT_DEFAULT_ROUTE_URL --dir=..` symfony run -d --watch=webpack.config.js yarn encore dev --watch
 # setup CORS_ALLOW_ORIGIN en env
+
+# TRANS
+# symfony console translation:update fr --force --domain=messages
