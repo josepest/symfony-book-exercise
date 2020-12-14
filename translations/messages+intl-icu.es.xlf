@@ -11,7 +11,7 @@
       </trans-unit>
       <trans-unit id="LNAVleg" resname="Give your feedback!">
         <source>Give your feedback!</source>
-        <target>__Give your feedback!</target>
+        <target state="translated">Danos tus comentarios</target>
       </trans-unit>
       <trans-unit id="3Mg5pAF" resname="View">
         <source>View</source>
